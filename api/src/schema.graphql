@@ -23,7 +23,10 @@ type Student {
   first_name: String!
   last_name: String!
 }
-
+type Course {
+  course_name: String!
+  course_id: String!
+}
 type Business {
   businessId: ID!
   name: String!
@@ -53,9 +56,9 @@ type Category {
   businesses: [Business] @relationship(type: "IN_CATEGORY", direction: IN)
 }
 
-type RatingCount @exclude {
-  stars: Float!
-  count: Int!
+type CourseCount @exclude {
+  course: String!
+  studentCount: Int!
 }
 
 type Mutation {
@@ -95,8 +98,8 @@ type Mutation {
 
 type Query {
   userCount: Int! @cypher(statement: "MATCH (p:Person) RETURN COUNT(p)")
-  ratingsCount: [RatingCount]
+  courseCount: [CourseCount]
     @cypher(
-      statement: "MATCH (r:Review) WITH r.stars AS stars, COUNT(*) AS count ORDER BY stars RETURN {stars: stars, count: count}"
+      statement: "MATCH (c:Course)-[r:INCLUDES_STUDENT]->(p:Person)RETURN {course: c.course_id, studentCount: count(p)}"
     )
 }
