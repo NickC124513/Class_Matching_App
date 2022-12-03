@@ -18,6 +18,12 @@ type User {
     )
 }
 
+type Student {
+  nuid: Int!
+  first_name: String!
+  last_name: String!
+}
+
 type Business {
   businessId: ID!
   name: String!
@@ -88,7 +94,7 @@ type Mutation {
 }
 
 type Query {
-  userCount: Int! @cypher(statement: "MATCH (u:User) RETURN COUNT(u)")
+  userCount: Int! @cypher(statement: "MATCH (p:Person) RETURN COUNT(p)")
   ratingsCount: [RatingCount]
     @cypher(
       statement: "MATCH (r:Review) WITH r.stars AS stars, COUNT(*) AS count ORDER BY stars RETURN {stars: stars, count: count}"
