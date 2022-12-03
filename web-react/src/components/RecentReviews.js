@@ -31,15 +31,13 @@ export default function RecentReviews() {
 
   return (
     <React.Fragment>
-      <Title>Recent Reviews</Title>
+      <Title>Recently Added Students</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Business Name</TableCell>
-            <TableCell>User Name</TableCell>
-            <TableCell>Review Text</TableCell>
-            <TableCell align="right">Review Stars</TableCell>
+            <TableCell>First Name</TableCell>
+            <TableCell>Last Name</TableCell>
+            <TableCell>NUID</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

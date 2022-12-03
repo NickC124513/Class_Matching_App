@@ -100,7 +100,7 @@ function UserList(props) {
       <Title>User List</Title>
       <TextField
         id="search"
-        label="User Name Contains"
+        label="Search By Name"
         className={classes.textField}
         value={filterState.usernameFilter}
         onChange={handleFilterChange('usernameFilter')}
