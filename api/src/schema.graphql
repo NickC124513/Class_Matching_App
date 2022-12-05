@@ -97,6 +97,8 @@ type Mutation {
 }
 
 type Query {
+  classes: String! @cypher(statement:"MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116 WITH collect(c.course_id) as list RETURN apoc.text.join(list, ', ') as string")
+  friendCount: Int! @cypher(statement:"MATCH (person:Person)-[r:IS_FRIENDS_WITH]->(friend:Person) WHERE person.nuid = 50582116 RETURN count(friend)")
   userCount: Int! @cypher(statement: "MATCH (p:Person) RETURN COUNT(p)")
   courseCount: [CourseCount]
     @cypher(

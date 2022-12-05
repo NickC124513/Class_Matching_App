@@ -20,7 +20,7 @@ const GET_DATA_QUERY = gql`
   }
 `
 
-export default function RatingsChart() {
+export default function ClassDistributionChart() {
   const theme = useTheme()
 
   const { loading, error, data } = useQuery(GET_DATA_QUERY)
@@ -29,18 +29,26 @@ export default function RatingsChart() {
 
   return (
     <React.Fragment>
-      <Title>Distribution of Classes</Title>
+      <Title>Class Distribution</Title>
       <ResponsiveContainer>
         <BarChart
           data={data.courseCount}
           margin={{
             top: 16,
             right: 16,
-            bottom: 0,
+            bottom: 10,
             left: 24,
           }}
         >
-          <XAxis dataKey="course" stroke={theme.palette.text.secondary} />
+          <XAxis
+            dataKey="course"
+            stroke={theme.palette.text.disabled}
+            textAnchor="end"
+            sclaeToFit="true"
+            verticalAnchor="start"
+            interval={0}
+            angle="-20"
+          />
           <YAxis stroke={theme.palette.text.secondary}>
             <Label
               angle={270}
