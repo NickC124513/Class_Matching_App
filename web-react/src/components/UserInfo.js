@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Title from './Title'
 import { useQuery, gql } from '@apollo/client'
-import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   depositContext: {
@@ -14,38 +13,37 @@ const useStyles = makeStyles({
   },
 })
 
-const GET_COUNT_QUERY = gql`
+const GET_DATA_QUERY = gql`
   {
-    friendCount(nuid: 50582116)
-    classes(nuid: 50582116)
+    student(nuid: 50582116) {
+      nuid
+      full_name
+    }
   }
 `
 
 export default function Deposits() {
   const classes = useStyles()
 
-  const { loading, error, data } = useQuery(GET_COUNT_QUERY)
+  const { loading, error, data } = useQuery(GET_DATA_QUERY)
+  console.log('data')
+  console.log(data)
   if (error) return <p>Error</p>
   return (
     <React.Fragment>
-      <Title>Dagmar Wilson</Title>
+      <Title>User Info</Title>
       <Typography component="p" variant="h4">
-        {loading ? 'Loading...' : data.friendCount.toString()}
+        {loading ? 'Loading...' : data.student.full_name}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        Total Friends
+        Full Name
       </Typography>
       <Typography component="p" variant="h6">
-        {loading ? 'Loading...' : data.classes}
+        {loading ? 'Loading...' : data.student.nuid}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        Your Classes
+        NUID
       </Typography>
-      <div>
-        <Link to="/friendDashboard" className={classes.navLink}>
-          View Friend Information
-        </Link>
-      </div>
     </React.Fragment>
   )
 }

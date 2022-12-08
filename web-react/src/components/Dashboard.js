@@ -5,8 +5,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
 
 import ClassDistributionChart from './ClassDistributionChart'
-import UserCount from './UserCount'
-import FriendCount from './FriendCount'
+import UserInfo from './UserInfo'
+import CourseList from './CourseList'
 export default function Dashboard() {
   const theme = useTheme()
 
@@ -30,16 +30,16 @@ export default function Dashboard() {
   return (
     <React.Fragment>
       <Grid container spacing={4}>
-        {/* Friend Count */}
+        {/* User Info */}
         <Grid item xs={12} md={10} lg={6}>
           <Paper className={fixedHeightPaper}>
-            <FriendCount />
+            <UserInfo />
           </Paper>
         </Grid>
-        {/* User Count */}
+        {/* Course list */}
         <Grid item xs={12} md={10} lg={6}>
           <Paper className={fixedHeightPaper}>
-            <UserCount />
+            <CourseList />
           </Paper>
         </Grid>
         {/* Bar Chart */}

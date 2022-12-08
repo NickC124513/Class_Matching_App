@@ -1,7 +1,6 @@
 type Student {
   nuid: Int!
-  first_name: String!
-  last_name: String!
+  full_name: String!
 }
 type Course {
   course_name: String!
@@ -39,5 +38,9 @@ type Query {
     @cypher(
       statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = $nuid WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH p, c, s MATCH (p)-[r:IS_FRIENDS_WITH]->(s) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
     )
+  student(nuid: Int): Student
+  @cypher(
+    statement: "MATCH (p:Person) WHERE p.nuid = $nuid RETURN {nuid: p.nuid, full_name: p.first_name + ' ' + p.last_name}"
+  )
 
 }

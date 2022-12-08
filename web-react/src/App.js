@@ -26,6 +26,7 @@ import {
   Menu as MenuIcon,
   Dashboard as DashboardIcon,
   People as PeopleIcon,
+  Class as ClassIcon,
 } from '@material-ui/icons'
 import Dashboard from './components/Dashboard'
 import FriendsDashboard from './components/FriendsDashboard'
@@ -208,16 +209,16 @@ export default function App() {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Friends" />
+                <ListItemText primary="Your Friends" />
               </ListItem>
             </Link>
 
             <Link to="/courseDashboard" className={classes.navLink}>
               <ListItem button>
                 <ListItemIcon>
-                  <PeopleIcon />
+                  <ClassIcon />
                 </ListItemIcon>
-                <ListItemText primary="Courses" />
+                <ListItemText primary="Your Course Info" />
               </ListItem>
             </Link>
           </List>

@@ -30,9 +30,6 @@ export default function courseStudents() {
       label: 'Students',
     },
   ]
-  console.log('data')
-  console.log(data)
-  console.log(error)
 
   return (
     <Table>

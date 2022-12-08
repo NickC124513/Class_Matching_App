@@ -23,7 +23,7 @@ export default function RecentReviews() {
   const columns = [
     {
       dataKey: 'course',
-      label: 'Course',
+      label: 'Courses',
     },
     {
       dataKey: 'students',
