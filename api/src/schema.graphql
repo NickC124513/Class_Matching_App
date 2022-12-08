@@ -17,6 +17,16 @@ type CourseCount @exclude {
   studentCount: Int!
 }
 
+type CourseStudents{
+  course: String!
+  students: String!
+}
+
+type CourseFriends{
+  course: String!
+  friends: String!
+}
+
 type Query {
   classes: String! @cypher(statement:"MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116 WITH collect(c.course_id) as list RETURN apoc.text.join(list, ', ') as string")
   friendCount: Int! @cypher(statement:"MATCH (person:Person)-[r:IS_FRIENDS_WITH]->(friend:Person) WHERE person.nuid = 50582116 RETURN count(friend)")
@@ -25,4 +35,9 @@ type Query {
     @cypher(
       statement: "MATCH (c:Course)-[r:INCLUDES_STUDENT]->(p:Person)RETURN {course: c.course_id, studentCount: count(p)}"
     )
+  courseStudents: [CourseStudents]
+    @cypher(
+      statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116 WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
+    )
+
 }

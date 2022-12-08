@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Title from './Title'
 import { useQuery, gql } from '@apollo/client'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   depositContext: {
@@ -40,6 +41,11 @@ export default function Deposits() {
       <Typography color="textSecondary" className={classes.depositContext}>
         Your Classes
       </Typography>
+      <div>
+        <Link to="/friendDashboard" className={classes.navLink}>
+          View Friend Information
+        </Link>
+      </div>
     </React.Fragment>
   )
 }

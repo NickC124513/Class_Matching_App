@@ -8,7 +8,7 @@ import { useQuery, gql } from '@apollo/client'
 import Title from './Title'
 import moment from 'moment'
 
-const GET_RECENT_REVIEWS_QUERY = gql`
+const GET_DATA_QUERY = gql`
   {
     reviews(options: { limit: 10, sort: { date: DESC } }) {
       user {
@@ -25,9 +25,11 @@ const GET_RECENT_REVIEWS_QUERY = gql`
 `
 
 export default function RecentReviews() {
-  const { loading, error, data } = useQuery(GET_RECENT_REVIEWS_QUERY)
+  const { loading, error, data } = useQuery(GET_DATA_QUERY)
   if (error) return <p>Error</p>
   if (loading) return <p>Loading</p>
+  console.log('data')
+  console.log(data)
 
   return (
     <React.Fragment>

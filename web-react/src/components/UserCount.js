@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Title from './Title'
@@ -32,13 +31,8 @@ export default function Deposits() {
         {loading ? 'Loading...' : data.userCount}
       </Typography>
       <Typography color="textSecondary" className={classes.depositContext}>
-        students found
+        total students in the database
       </Typography>
-      <div>
-        <Link to="/users" className={classes.navLink}>
-          View students
-        </Link>
-      </div>
     </React.Fragment>
   )
 }

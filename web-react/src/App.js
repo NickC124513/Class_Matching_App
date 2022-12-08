@@ -2,8 +2,6 @@ import React from 'react'
 
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 
-import UserList from './components/UserList'
-
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core/styles'
 import {
@@ -30,6 +28,7 @@ import {
   People as PeopleIcon,
 } from '@material-ui/icons'
 import Dashboard from './components/Dashboard'
+import FriendsDashboard from './components/FriendsDashboard'
 
 function Copyright() {
   return (
@@ -203,12 +202,12 @@ export default function App() {
               </ListItem>
             </Link>
 
-            <Link to="/users" className={classes.navLink}>
+            <Link to="/friendDashboard" className={classes.navLink}>
               <ListItem button>
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Users" />
+                <ListItemText primary="Course Dashboard" />
               </ListItem>
             </Link>
           </List>
@@ -219,8 +218,12 @@ export default function App() {
           <Container maxWidth="lg" className={classes.container}>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/businesses" component={UserList} />
-              <Route exact path="/users" component={UserList} />
+              <Route exact path="/businesses" component={FriendsDashboard} />
+              <Route
+                exact
+                path="/friendDashboard"
+                component={FriendsDashboard}
+              />
             </Switch>
 
             <Box pt={4}>

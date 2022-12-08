@@ -2,11 +2,7 @@ import React from 'react'
 import { useTheme } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import clsx from 'clsx'
-
-import ClassDistributionChart from './ClassDistributionChart'
-import UserCount from './UserCount'
-import FriendCount from './FriendCount'
+import RecentReviews from './course-students'
 export default function Dashboard() {
   const theme = useTheme()
 
@@ -25,27 +21,20 @@ export default function Dashboard() {
     },
   }))
   const classes = useStyles(theme)
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight)
 
   return (
     <React.Fragment>
       <Grid container spacing={4}>
-        {/* Friend Count */}
-        <Grid item xs={12} md={10} lg={6}>
-          <Paper className={fixedHeightPaper}>
-            <FriendCount />
+        {/* Recent Reviews */}
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <RecentReviews />
           </Paper>
         </Grid>
-        {/* User Count */}
-        <Grid item xs={12} md={10} lg={6}>
-          <Paper className={fixedHeightPaper}>
-            <UserCount />
-          </Paper>
-        </Grid>
-        {/* Bar Chart */}
-        <Grid item xs={12} md={8} lg={12}>
-          <Paper className={fixedHeightPaper}>
-            <ClassDistributionChart />
+        {/* Recent Reviews */}
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <RecentReviews />
           </Paper>
         </Grid>
       </Grid>
