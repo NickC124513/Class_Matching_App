@@ -2,7 +2,7 @@ import React from 'react'
 import { useTheme } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import CourseFriends from './course-friends'
+import CourseStudents from './course-students'
 export default function Dashboard() {
   const theme = useTheme()
 
@@ -25,10 +25,10 @@ export default function Dashboard() {
   return (
     <React.Fragment>
       <Grid container spacing={4}>
-        {/* CourseFriends */}
+        {/* CourseStudents */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <CourseFriends />
+            <CourseStudents />
           </Paper>
         </Grid>
       </Grid>

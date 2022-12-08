@@ -29,6 +29,7 @@ import {
 } from '@material-ui/icons'
 import Dashboard from './components/Dashboard'
 import FriendsDashboard from './components/FriendsDashboard'
+import CourseDashboard from './components/CourseDashboard'
 
 function Copyright() {
   return (
@@ -207,7 +208,16 @@ export default function App() {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                <ListItemText primary="Course Dashboard" />
+                <ListItemText primary="Friends" />
+              </ListItem>
+            </Link>
+
+            <Link to="/courseDashboard" className={classes.navLink}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Courses" />
               </ListItem>
             </Link>
           </List>
@@ -218,11 +228,15 @@ export default function App() {
           <Container maxWidth="lg" className={classes.container}>
             <Switch>
               <Route exact path="/" component={Dashboard} />
-              <Route exact path="/businesses" component={FriendsDashboard} />
               <Route
                 exact
                 path="/friendDashboard"
                 component={FriendsDashboard}
+              />
+              <Route
+                exact
+                path="/courseDashboard"
+                component={CourseDashboard}
               />
             </Switch>
 
