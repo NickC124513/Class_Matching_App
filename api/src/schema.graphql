@@ -39,5 +39,9 @@ type Query {
     @cypher(
       statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116 WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
     )
+  courseFriends: [CourseStudents]
+    @cypher(
+      statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116  WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH p, c, s MATCH (p)-[r:IS_FRIENDS_WITH]->(s) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
+    )
 
 }

@@ -2,7 +2,8 @@ import React from 'react'
 import { useTheme } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import RecentReviews from './course-students'
+import CourseStudents from './course-students'
+import CourseFriends from './course-friends'
 export default function Dashboard() {
   const theme = useTheme()
 
@@ -25,16 +26,16 @@ export default function Dashboard() {
   return (
     <React.Fragment>
       <Grid container spacing={4}>
-        {/* Recent Reviews */}
+        {/* CourseStudents */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <RecentReviews />
+            <CourseStudents />
           </Paper>
         </Grid>
-        {/* Recent Reviews */}
+        {/* CourseFriends */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <RecentReviews />
+            <CourseFriends />
           </Paper>
         </Grid>
       </Grid>

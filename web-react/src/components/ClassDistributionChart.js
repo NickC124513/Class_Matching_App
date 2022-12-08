@@ -47,7 +47,7 @@ export default function ClassDistributionChart() {
             sclaeToFit="true"
             verticalAnchor="start"
             interval={0}
-            angle="-20"
+            angle={-20}
           />
           <YAxis stroke={theme.palette.text.secondary}>
             <Label
