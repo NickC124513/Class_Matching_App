@@ -16,8 +16,8 @@ const useStyles = makeStyles({
 
 const GET_COUNT_QUERY = gql`
   {
-    friendCount
-    classes
+    friendCount(nuid: 50582116)
+    classes(nuid: 50582116)
   }
 `
 

@@ -8,7 +8,7 @@ import { useQuery, gql } from '@apollo/client'
 
 const GET_DATA_QUERY = gql`
   {
-    courseStudents {
+    courseStudents(nuid: 50582116) {
       course
       students
     }

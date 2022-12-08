@@ -1,7 +1,3 @@
-scalar Point
-scalar DateTime
-scalar PointInput
-
 type Student {
   nuid: Int!
   first_name: String!
@@ -28,20 +24,20 @@ type CourseFriends{
 }
 
 type Query {
-  classes: String! @cypher(statement:"MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116 WITH collect(c.course_id) as list RETURN apoc.text.join(list, ', ') as string")
-  friendCount: Int! @cypher(statement:"MATCH (person:Person)-[r:IS_FRIENDS_WITH]->(friend:Person) WHERE person.nuid = 50582116 RETURN count(friend)")
+  classes(nuid: Int): String! @cypher(statement:"MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = $nuid WITH collect(c.course_id) as list RETURN apoc.text.join(list, ', ') as string")
+  friendCount(nuid: Int): Int! @cypher(statement:"MATCH (person:Person)-[r:IS_FRIENDS_WITH]->(friend:Person) WHERE person.nuid = $nuid RETURN count(friend)")
   userCount: Int! @cypher(statement: "MATCH (p:Person) RETURN COUNT(p)")
   courseCount: [CourseCount]
     @cypher(
       statement: "MATCH (c:Course)-[r:INCLUDES_STUDENT]->(p:Person)RETURN {course: c.course_id, studentCount: count(p)}"
     )
-  courseStudents: [CourseStudents]
+  courseStudents(nuid: Int): [CourseStudents]
     @cypher(
-      statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116 WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
+      statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = $nuid WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
     )
-  courseFriends: [CourseStudents]
+  courseFriends(nuid: Int): [CourseStudents]
     @cypher(
-      statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = 50582116  WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH p, c, s MATCH (p)-[r:IS_FRIENDS_WITH]->(s) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
+      statement: "MATCH (p:Person)-[r:IS_ENROLLED_IN]->(c:Course) WHERE p.nuid = $nuid WITH p, c MATCH (c)-[r:INCLUDES_STUDENT]->(s:Person) WITH p, c, s MATCH (p)-[r:IS_FRIENDS_WITH]->(s) WITH collect(s.first_name) as students, p, c RETURN {course: c.course_id, students: apoc.text.join(students, ', ')}"
     )
 
 }
