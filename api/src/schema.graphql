@@ -40,7 +40,7 @@ type Query {
     )
   friendCourses(nuid: Int): [FriendCourses]
     @cypher(
-      statement: "MATCH (p)-[r:IS_FRIENDS_WITH]->(s) WHERE p.nuid = 50582116  WITH p, s MATCH (c:Course)-[r:INCLUDES_STUDENT]->(s) WITH p, c, s WITH collect(c.course_id) as courses, s RETURN {friend: s.first_name, courses: apoc.text.join(courses, ', ')}"
+      statement: "MATCH (p)-[r:IS_FRIENDS_WITH]->(s) WHERE p.nuid = $nuid  WITH p, s MATCH (c:Course)-[r:INCLUDES_STUDENT]->(s) WITH p, c, s WITH collect(c.course_id) as courses, s RETURN {friend: s.first_name, courses: apoc.text.join(courses, ', ')}"
     )
   student(nuid: Int): Student
   @cypher(
