@@ -2,7 +2,7 @@ import React from 'react'
 import { useTheme } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import CourseFriends from './course-friends'
+import FriendCourses from './friend-courses'
 export default function Dashboard() {
   const theme = useTheme()
 
@@ -28,7 +28,7 @@ export default function Dashboard() {
         {/* CourseFriends */}
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <CourseFriends />
+            <FriendCourses />
           </Paper>
         </Grid>
       </Grid>

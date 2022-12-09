@@ -3,6 +3,7 @@ import { useTheme } from '@material-ui/core/styles'
 import { Grid, Paper } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import CourseStudents from './course-students'
+import CourseFriends from './course-friends'
 export default function Dashboard() {
   const theme = useTheme()
 
@@ -29,6 +30,12 @@ export default function Dashboard() {
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <CourseStudents />
+          </Paper>
+        </Grid>
+        {/* CourseFriends */}
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <CourseFriends />
           </Paper>
         </Grid>
       </Grid>

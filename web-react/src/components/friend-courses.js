@@ -8,13 +8,13 @@ import { useQuery, gql } from '@apollo/client'
 
 const GET_DATA_QUERY = gql`
   {
-    courseStudents(nuid: 50582116) {
-      course
-      students
+    friendCourses(nuid: 50582116) {
+      courses
+      friend
     }
   }
 `
-export default function courseStudents() {
+export default function RecentReviews() {
   const { loading, error, data } = useQuery(GET_DATA_QUERY)
 
   if (loading) return 'Loading...'
@@ -22,14 +22,17 @@ export default function courseStudents() {
 
   const columns = [
     {
-      dataKey: 'course',
-      label: 'Course',
+      dataKey: 'friend',
+      label: 'Friend',
     },
     {
-      dataKey: 'students',
-      label: 'Students In Classes',
+      dataKey: 'courses',
+      label: 'Courses',
     },
   ]
+  console.log('data')
+  console.log(data)
+  console.log(error)
 
   return (
     <Table>
@@ -41,11 +44,11 @@ export default function courseStudents() {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.courseStudents.map((course) => (
-          <TableRow key={course.course}>
+        {data.friendCourses.map((courses) => (
+          <TableRow key={courses.courses}>
             {columns.map((column) => (
               <TableCell key={column.dataKey}>
-                {course[column.dataKey]}
+                {courses[column.dataKey]}
               </TableCell>
             ))}
           </TableRow>
